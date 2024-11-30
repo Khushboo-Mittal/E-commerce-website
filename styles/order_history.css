@@ -147,11 +147,22 @@ h1 {
 }
 
 /* Image Gallery Styling */
+
+h2 {
+  font-family: 'Rakkas', serif; /* Font for the brand name */
+  font-size: 24px; /* Size of the brand name */
+  font-weight: 700; /* Bold font weight */
+  margin: 0; /* Remove default margin */
+  color: #000; /* Black text color */
+  margin-top: 160px;
+}
+
 .image-gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 columns layout */
   gap: 20px; /* Space between images */
   justify-items: center;
+  /* margin-top: 160px; */
 }
 
 .image-container {
@@ -168,15 +179,6 @@ h1 {
   height: 100%;
   object-fit: cover;
 }
-
-
-
-
-
-
-
-
-
 
 footer {
   position: absolute; /* Fix it at the bottom of the page */

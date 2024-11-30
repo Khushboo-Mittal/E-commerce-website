@@ -15,6 +15,7 @@ body {
     text-align: left; /* Align text to the left */
     z-index: 1000; /* Ensures that logo stays on top of other elements */
 }
+
 .logo-placeholder {
     display: inline-block; /* Inline-block to allow styling like width/height */
     width: 40px; /* Width of the logo */
@@ -26,8 +27,8 @@ body {
 }
 
 .logo-image {
-    width: 100px; /* Image width fills the container */
-    height: 100px; /* Image height fills the container */
+    width: 100%; /* Image width fills the container */
+    height: 100%; /* Image height fills the container */
     object-fit: cover; /* Ensures the image scales proportionally */
 }
 
@@ -48,6 +49,7 @@ h1 {
     color: #555; /* Gray text color */
     font-weight: 400; /* Normal font weight */
 }
+
 
 /* Navigation Bar */
 .navbar {

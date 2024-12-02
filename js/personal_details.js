@@ -45,13 +45,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // --- Navbar Username Update ---
-    // Retrieve the username from localStorage (default is "Chris Dave" if not set)
+    // Retrieve the username from localStorage
     const username = localStorage.getItem("username") || "Chris Dave";
 
     // Split the username into first and last names
     const nameParts = username.split(" ");
     const firstName = nameParts.slice(0, -1).join(" ") || "Chris"; // Everything except the last word
-    const lastName = nameParts.slice(-1).join(" ") || "Dave"; // The last word
+    const lastName = nameParts.slice(-1).join(" ") || "DAVE"; // The last word
 
     // Update the DOM elements with the first and last names
     document.querySelector(".first-name").textContent = firstName;

@@ -1,7 +1,18 @@
+// Function to update the cart item count
+function updateCartCount() {
+    const quantity1 = parseInt(document.getElementById('quantity1').textContent);
+    const quantity2 = parseInt(document.getElementById('quantity2').textContent);
+    const totalItems = quantity1 + quantity2;
+
+    const cartLink = document.getElementById('cart-link');
+    cartLink.textContent = `Cart (${totalItems})`;
+}
+
 // Functionality for quantity buttons
 document.getElementById('plus1').addEventListener('click', function() {
     let quantity = document.getElementById('quantity1');
     quantity.textContent = parseInt(quantity.textContent) + 1;
+    updateCartCount();
 });
 
 document.getElementById('minus1').addEventListener('click', function() {
@@ -9,11 +20,13 @@ document.getElementById('minus1').addEventListener('click', function() {
     if (parseInt(quantity.textContent) > 1) {
         quantity.textContent = parseInt(quantity.textContent) - 1;
     }
+    updateCartCount();
 });
 
 document.getElementById('plus2').addEventListener('click', function() {
     let quantity = document.getElementById('quantity2');
     quantity.textContent = parseInt(quantity.textContent) + 1;
+    updateCartCount();
 });
 
 document.getElementById('minus2').addEventListener('click', function() {
@@ -21,6 +34,7 @@ document.getElementById('minus2').addEventListener('click', function() {
     if (parseInt(quantity.textContent) > 1) {
         quantity.textContent = parseInt(quantity.textContent) - 1;
     }
+    updateCartCount();
 });
 
 // Functionality for remove button
@@ -31,15 +45,4 @@ removeButtons.forEach(function(button) {
     });
 });
 
-// Redirect to Personal Details Page
-function redirectToPersonalDetails() {
-    // Changes the current location of the browser to the Personal Details page
-    window.location.href = "../pages/personal_details.html";
-  }
-  
-  // Redirect to Recommended Page
-  function redirectToRecommended() {
-    // Retrieve the input values for username and password from the HTML form
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-  }
+updateCartCount();

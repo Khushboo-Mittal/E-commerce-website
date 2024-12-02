@@ -134,7 +134,7 @@ h1 {
     flex-direction: column; /* Align items vertically */
     justify-content: flex-start;
     align-items: right; /* Center the content horizontally */
-    margin-left: 220px; /*Offset to avoid navbar */
+    margin-left: 240px; /*Offset to avoid navbar */
     padding: 10px;
     flex-grow: 1; /* Allow content to take up remaining space */
     align-items: right;
@@ -238,17 +238,6 @@ h1 {
 .remove-btn:hover {
     background-color: #e60000;
 }
-
-
-
-
-
-
-
-
-
-
-
 
   footer {
     position: absolute; /* Fix it at the bottom of the page */

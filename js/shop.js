@@ -1,10 +1,10 @@
 // Sample data for each category
 const categories = {
     footwear: [
-      '../assets/image1.png',
-      '../assets/image2.png',
-      '../assets/image3.png',
-      '../assets/image4.png',
+      '../assets/12.png',
+      '../assets/13.png',
+      '../assets/14.png',
+      '../assets/15.png',
     ],
     fragrance: [
       '../assets/image1.png',
@@ -17,9 +17,9 @@ const categories = {
       '../assets/image3.png',
     ],
     bags: [
-      '../assets/image1.png',
-      '../assets/image2.png',
-      '../assets/image6.png',
+      '../assets/42.png',
+      '../assets/43.png',
+      '../assets/44.png',
     ],
   };
   

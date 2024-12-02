@@ -73,8 +73,4 @@ const lastName = nameParts.slice(-1).join(" ") || "DAVE"; // The last word
 
 // Update the DOM elements with the names
 document.querySelector(".first-name").textContent = firstName;
-<<<<<<< HEAD
 document.querySelector(".last-name").textContent = lastName;
-=======
-document.querySelector(".last-name").textContent = lastName;
->>>>>>> upstream-branch

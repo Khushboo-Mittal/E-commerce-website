@@ -1,8 +1,8 @@
-
+//In progess
 // <!-- META DATA -->
 // <!--
 // Developer Details:
-//     Name: Tanisha Priya
+//     Name: Tanisha Priya, Prachi Tavse
 //     Role: Frontend Developer
 
 // Version:
@@ -32,47 +32,186 @@ function updateCartCount() {
     const totalItems = quantity1 + quantity2;
 
     const cartLink = document.getElementById('cart-link');
-    cartLink.textContent = `Cart (${totalItems})`;
+    if(cartLink){
+        cartLink.textContent = `Cart (${totalItems})`;
+    }
+    
+    localStorage.setItem('cartCount', totalItems);
 }
 
 // Functionality for quantity buttons
-document.getElementById('plus1').addEventListener('click', function() {
+const plus1 = document.getElementById('plus1');
+if(plus1){
+plus1.addEventListener('click', function() {
     let quantity = document.getElementById('quantity1');
     quantity.textContent = parseInt(quantity.textContent) + 1;
     updateCartCount();
 });
+}
 
-document.getElementById('minus1').addEventListener('click', function() {
+const minus1 = document.getElementById('minus1');
+if(minus1){
+minus1.addEventListener('click', function() {
     let quantity = document.getElementById('quantity1');
     if (parseInt(quantity.textContent) > 1) {
         quantity.textContent = parseInt(quantity.textContent) - 1;
     }
     updateCartCount();
 });
+}
 
-document.getElementById('plus2').addEventListener('click', function() {
+const plus2 = document.getElementById('plus2');
+if(plus2){
+plus2.addEventListener('click', function() {
     let quantity = document.getElementById('quantity2');
     quantity.textContent = parseInt(quantity.textContent) + 1;
     updateCartCount();
 });
+}
 
-document.getElementById('minus2').addEventListener('click', function() {
+const minus2 = document.getElementById('minus2')
+if(minus2){
+minus2.addEventListener('click', function() {
     let quantity = document.getElementById('quantity2');
     if (parseInt(quantity.textContent) > 1) {
         quantity.textContent = parseInt(quantity.textContent) - 1;
     }
     updateCartCount();
 });
+}
 
 // Functionality for remove button
 let removeButtons = document.querySelectorAll('.remove-btn');
-removeButtons.forEach(function(button) {
-    button.addEventListener('click', function() {
-        button.closest('.cart-item').remove();
+if (removeButtons) {
+    removeButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            let cartItem = button.closest('.cart-item');
+            let quantity = cartItem.querySelector('.quantity').textContent; // Assuming quantity has class 'quantity'
+            updateCartCount(-parseInt(quantity)); // Decrease cart count by the quantity being removed
+            cartItem.remove();
+        });
     });
-});
+}
 
 updateCartCount();
+
+// Function to load cart items from localStorage
+function loadCartItems() {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const cartContainer = document.getElementById('cart-container');
+    const emptyCartMessage = document.getElementById('empty-cart-message');
+    
+    // Clear the existing content in the cart container
+    cartContainer.innerHTML = '';
+
+    if (cartItems.length === 0) {
+        emptyCartMessage.style.display = 'block'; // Show "Cart is empty" message
+    } else {
+        emptyCartMessage.style.display = 'none'; // Hide the message if cart has items
+
+        cartItems.forEach(item => {
+            // Create and insert cart item dynamically
+            const cartItemDiv = document.createElement('div');
+            cartItemDiv.classList.add('cart-item');
+            
+            cartItemDiv.innerHTML = `
+                <div class="item-image">
+                    <img src="${item.image}" alt="${item.name}">
+                </div>
+                <div class="item-details">
+                    <h2>${item.name}</h2>
+                    <p class="price">$${item.price}</p>
+                    <p class="date">Delivery Date: ${item.deliveryDate}</p>
+                    <div class="quantity">
+                        <button class="quantity-btn" data-action="minus" data-item-id="${item.id}">-</button>
+                        <span class="quantity" id="quantity-${item.id}">${item.quantity}</span>
+                        <button class="quantity-btn" data-action="plus" data-item-id="${item.id}">+</button>
+                    </div>
+                    <button class="remove-btn" data-item-id="${item.id}">Remove</button>
+                </div>
+            `;
+            
+            cartContainer.appendChild(cartItemDiv);
+        });
+
+        // Attach event listeners to quantity buttons and remove buttons
+        attachCartEventListeners();
+    }
+}
+
+// Attach event listeners to quantity buttons and remove buttons
+function attachCartEventListeners() {
+    const plusButtons = document.querySelectorAll('.quantity-btn[data-action="plus"]');
+    const minusButtons = document.querySelectorAll('.quantity-btn[data-action="minus"]');
+    const removeButtons = document.querySelectorAll('.remove-btn');
+    
+    plusButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const itemId = this.getAttribute('data-item-id');
+            updateItemQuantity(itemId, 1);
+        });
+    });
+
+    minusButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const itemId = this.getAttribute('data-item-id');
+            updateItemQuantity(itemId, -1);
+        });
+    });
+
+    removeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const itemId = this.getAttribute('data-item-id');
+            removeItemFromCart(itemId);
+        });
+    });
+}
+
+// Function to update item quantity in cart
+function updateItemQuantity(itemId, change) {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const itemIndex = cartItems.findIndex(item => item.id === itemId);
+    
+    if (itemIndex !== -1) {
+        const item = cartItems[itemIndex];
+        item.quantity += change;
+        
+        if (item.quantity <= 0) {
+            removeItemFromCart(itemId);
+        } else {
+            cartItems[itemIndex] = item;
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            loadCartItems(); // Refresh cart
+            updateCartCount();
+        }
+    }
+}
+
+// Function to remove item from cart
+function removeItemFromCart(itemId) {
+    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    cartItems = cartItems.filter(item => item.id !== itemId);
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    loadCartItems(); // Refresh cart
+    updateCartCount();
+}
+
+// Function to update cart count in navbar
+function updateCartCount() {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+    
+    const cartLink = document.getElementById('cart-link');
+    cartLink.textContent = `Cart (${totalItems})`;
+
+    localStorage.setItem('cartCount', totalItems);
+}
+
+// Initialize the cart
+document.addEventListener('DOMContentLoaded', function() {
+    loadCartItems();
+    updateCartCount();
+});
 
 // --- Navbar Username Update ---
 // Retrieve the username from localStorage

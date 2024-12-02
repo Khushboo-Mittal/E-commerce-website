@@ -1,3 +1,27 @@
+/* META DATA - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* Developer details:
+    Name: Harshita Jangde
+    Role: Architect */
+
+/* Version:
+    Version: V 1.0 (2 December 2024)
+    Developers: Harshita Jangde
+    Unit test: Pass
+    Integration test: Pass */
+
+/* Description:
+    This JavaScript file handles the dynamic behavior for the personal details section,
+    including interactive features like form input adjustments, active link highlighting, 
+    and saving user details to localStorage. */
+
+/* Dependencies:
+    - No external JavaScript libraries are used.
+    - Vanilla JavaScript used to handle interactions, DOM manipulation, and event handling for the interactive UI components.
+
+/* To use: Link this JavaScript file within the HTML to enable the dynamic interactivity
+   for the personal details section. */
+
 document.addEventListener("DOMContentLoaded", () => {
     // Navbar functionality (active link highlighting)
     // Get all navbar links
@@ -6,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Add click event listeners to each navbar link
     navbarLinks.forEach((link) => {
         link.addEventListener("click", (e) => {
-            e.preventDefault(); // Prevent the default anchor behavior
+            e.preventDefault(); // Prevent the default anchor behavior (page reload)
 
             // Remove the "active" class from all navbar links
             navbarLinks.forEach((link) => link.classList.remove("active"));
@@ -29,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const firstName = nameParts.slice(0, -1).join(" ") || "Chris"; // Everything except the last word
     const lastName = nameParts.slice(-1).join(" ") || "DAVE"; // The last word
 
-    // Update the DOM elements with the names
+    // Update the DOM elements with the first and last names
     document.querySelector(".first-name").textContent = firstName;
     document.querySelector(".last-name").textContent = lastName;
 
@@ -81,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Save button click event listener
     const saveButton = document.getElementById('save-button');
     saveButton.addEventListener('click', (e) => {
-        e.preventDefault();
+        e.preventDefault(); // Prevent default form submission
 
         // Save the current values to localStorage
         localStorage.setItem('fullName', fullNameInput.value);
@@ -94,6 +118,6 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem('secretCode', secretCodeInput.value);
 
         // Optionally show a message or change button text after saving
-        alert('Details saved successfully!');
+        alert('Details saved successfully!'); // Alert user that the details were saved
     });
 });

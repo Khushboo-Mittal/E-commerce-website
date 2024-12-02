@@ -25,7 +25,7 @@ body {
     font-family: Arial, sans-serif; /* Use a clean, sans-serif font for readability */
     margin: 0; /* Remove the default margin from the body */
     padding: 0; /* Remove the default padding from the body */
-    background: url('../assets/background.png') no-repeat center center fixed; /* Set a fixed background image centered on the page */
+    background: url('../assets/Infographics/background.png') no-repeat center center fixed; /* Set a fixed background image centered on the page */
     background-size: cover; /* Scale the background image to cover the entire viewport */
 }
 

@@ -22,12 +22,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- Navbar Username Update ---
     // Retrieve the username from localStorage
-    const username = localStorage.getItem("username") || "John Doe";
+    const username = localStorage.getItem("username") || "Chris Dave";
 
     // Split the username into first and last names
     const nameParts = username.split(" ");
-    const firstName = nameParts.slice(0, -1).join(" ") || "John"; // Everything except the last word
-    const lastName = nameParts.slice(-1).join(" ") || "DOE"; // The last word
+    const firstName = nameParts.slice(0, -1).join(" ") || "Chris"; // Everything except the last word
+    const lastName = nameParts.slice(-1).join(" ") || "DAVE"; // The last word
 
     // Update the DOM elements with the names
     document.querySelector(".first-name").textContent = firstName;

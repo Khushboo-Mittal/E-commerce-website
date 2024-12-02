@@ -121,3 +121,14 @@ document.addEventListener("DOMContentLoaded", () => {
         alert('Details saved successfully!'); // Alert user that the details were saved
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Load cart count from localStorage
+    const cartCount = localStorage.getItem('cartCount') || 0;
+
+    // Update the cart link on the navbar
+    const cartLink = document.getElementById('cart-link');
+    if (cartLink) {
+        cartLink.textContent = `Cart (${cartCount})`;
+    }
+});

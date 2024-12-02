@@ -74,49 +74,14 @@ To Run:
     <a href="recommended.html">Recommended</a>
     <a href="order_history.html">Order History</a>
     <a href="shop.html">Shop</a>
-    <a href="cart.html" id="cart-link">Cart</a>
+    <a href="cart.html" id="cart-link">Cart (0)</a>
     <a href="homepage.html">Logout</a>
   </div>
 
-  <div class="cart-container">
-    <div class="cart-item">
-        <div class="item-image1">
-            <img src="../assets/12.png" alt="Item 1">
-        </div>
-        <div class="item-details">
-            <h2>Shoes</h2>
-            <p class="price">$50</p>
-            <p class="date">Delivery Date: 31 Dec 2024</p>
-            <div class="quantity">
-                <button class="quantity-btn" id="minus1">-</button>
-                <span id="quantity1">1</span>
-                <button class="quantity-btn" id="plus1">+</button>
-            </div>
-            <button class="remove-btn">Remove</button>
-        </div>
-    </div>
-
-    <div class="cart-item">
-        <div class="item-image2">
-            <img src="../assets/43.png" alt="Item 2">
-        </div>
-        <div class="item-details">
-            <h2>Bag</h2>
-            <p class="price">$50</p>
-            <p class="date">Delivery Date: 31 Dec 2024</p>
-            <div class="quantity">
-                <button class="quantity-btn" id="minus2">-</button>
-                <span id="quantity2">1</span>
-                <button class="quantity-btn" id="plus2">+</button>
-            </div>
-            <button class="remove-btn">Remove</button>
-        </div>
-    </div>
-</div>
-
-
-
-
+  <div class="cart-container" id="cart-container">
+    <div id="empty-cart-message" style="display: none;">Your cart is empty.</div>
+    <!-- Cart items will be dynamically inserted here by JS -->
+  </div>
 
   <!-- Footer Section with Links -->
   <footer>

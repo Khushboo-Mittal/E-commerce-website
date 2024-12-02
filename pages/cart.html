@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Define the character encoding for the document -->
+  <meta charset="UTF-8">
+  
+  <!-- Ensure the webpage is responsive on all devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Webpage title displayed in the browser tab -->
+  <title>Peoplely Fashion</title>
+  
+  <!-- Link to the external CSS file for styling -->
+  <link rel="stylesheet" href="../styles/cart.css">
+  
+  <!-- Preconnect to Google Fonts to optimize font loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Import custom fonts from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Faculty+Glyphic&family=Jaro:opsz@6..72&family=Rakkas&display=swap" rel="stylesheet">
+</head>
+<body>
+  
+
+  <!-- Brand Logo and Name Section -->
+  <div class="brand-logo">
+    <!-- Placeholder for the logo image -->
+    <div class="logo-placeholder">
+      <img class="logo-image" src="../assets/logo.png" alt="Logo"> <!-- Display brand logo -->
+    </div>
+    <!-- Brand name -->
+    <h1>P E O P L E L Y</h1>
+    <p class="fashion-text">F a s h i o n</p>
+  </div>
+
+
+  <div class="navbar">
+    <div class="user-profile">
+      <img src="../assets/Infographics/Profiles.jpg" alt="User Profile">
+      <h2 class="user-name">
+        <!-- Display user's first and last name -->
+        <span class="first-name">john</span> <span class="last-name">DOE</span>
+      </h2>
+    </div>
+    <a href="personal_details.html">Personal Details</a>
+    <a href="recommended.html">Recommended</a>
+    <a href="order_history.html">Order History</a>
+    <a href="shop.html">Shop</a>
+    <a href="cart.html">Cart</a>
+    <a href="homepage.html">Logout</a>
+  </div>
+
+  <div class="cart-container">
+    <div class="cart-item">
+        <div class="item-image1">
+            <img src="../assets/image5.png" alt="Item 1">
+        </div>
+        <div class="item-details">
+            <h2>Perfume</h2>
+            <p class="price">$50</p>
+            <p class="date">Delivery Date: 31 Dec 2024</p>
+            <div class="quantity">
+                <button class="quantity-btn" id="minus1">-</button>
+                <span id="quantity1">1</span>
+                <button class="quantity-btn" id="plus1">+</button>
+            </div>
+            <button class="remove-btn">Remove</button>
+        </div>
+    </div>
+
+    <div class="cart-item">
+        <div class="item-image2">
+            <img src="../assets/image6.png" alt="Item 2">
+        </div>
+        <div class="item-details">
+            <h2>Bag</h2>
+            <p class="price">$50</p>
+            <p class="date">Delivery Date: 31 Dec 2024</p>
+            <div class="quantity">
+                <button class="quantity-btn" id="minus2">-</button>
+                <span id="quantity2">1</span>
+                <button class="quantity-btn" id="plus2">+</button>
+            </div>
+            <button class="remove-btn">Remove</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+  <!-- Footer Section with Links -->
+  <footer>
+    <!-- Separator line for footer -->
+    <div class="footer-separator"></div>
+    <!-- Links to various informational pages -->
+    <div class="footer-links">
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="privacypolicy.html">Privacy Policy</a>
+      <a href="refundpolicy.html">Refund Policy</a>
+      <a href="terms.html">Terms & Conditions</a>
+    </div>
+  </footer>
+
+  <!-- External JavaScript file for interactivity -->
+  <script src="../js/cart.js"></script>
+</body>
+</html>

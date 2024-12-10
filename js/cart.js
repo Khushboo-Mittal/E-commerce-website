@@ -1,13 +1,13 @@
-
+//In progess
 // <!-- META DATA -->
 // <!--
 // Developer Details:
-//     Name: Tanisha Priya
+//     Name: Prachi Tavse, Tanisha Priya
 //     Role: Frontend Developer
 
 // Version:
 //     Version: V 1.0 (2 December 2024)
-//     Developers: Tanisha Priya, Prachi Tavse
+//     Developers: Prachi Tavse, Tanisha Priya
 //     Unit Test: Pass
 //     Integration Test: Pass
 
@@ -25,54 +25,108 @@
 // To Run:
 //     Open the `cart.html` file in a modern web browser.
 // -->
-// Function to update the cart item count
-function updateCartCount() {
-    const quantity1 = parseInt(document.getElementById('quantity1').textContent);
-    const quantity2 = parseInt(document.getElementById('quantity2').textContent);
-    const totalItems = quantity1 + quantity2;
 
-    const cartLink = document.getElementById('cart-link');
-    cartLink.textContent = `Cart (${totalItems})`;
+function renderCart() {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const cartContainer = document.getElementById('cart-container');
+    
+    cartContainer.innerHTML = cartItems.length > 0 
+      ? cartItems.map(item => `
+        <div class="cart-item" data-id="${item.id}">
+          <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+          <div class="cart-item-details">
+            <h3>${item.name}</h3>
+            <p>Price: $${item.price}</p>
+            <p>Delivered by: ${item.delivery}</p>
+            <p>Quantity: 
+              <button class="decrease-quantity" data-id="${item.id}">-</button>
+              <span>${item.quantity}</span>
+              <button class="increase-quantity" data-id="${item.id}">+</button>
+            </p>
+            <button class="remove-item" data-id="${item.id}">Remove</button>
+          </div>
+        </div>
+      `).join('')
+      : `<p>Your cart is empty.</p>`;
+    
+    updateCartCount(); // Ensure the count is updated every time the cart is rendered
 }
 
-// Functionality for quantity buttons
-document.getElementById('plus1').addEventListener('click', function() {
-    let quantity = document.getElementById('quantity1');
-    quantity.textContent = parseInt(quantity.textContent) + 1;
-    updateCartCount();
-});
+function updateCartCount() {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
-document.getElementById('minus1').addEventListener('click', function() {
-    let quantity = document.getElementById('quantity1');
-    if (parseInt(quantity.textContent) > 1) {
-        quantity.textContent = parseInt(quantity.textContent) - 1;
+    localStorage.setItem('cartCount', cartCount);
+
+    const cartLink = document.getElementById('cart-link');
+    cartLink.textContent = `Cart (${cartCount})`; // Update the navbar count
+}
+
+function increaseQuantity(itemId) {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const itemIndex = cartItems.findIndex(item => item.id === parseInt(itemId));
+
+    if (itemIndex > -1) {
+        cartItems[itemIndex].quantity += 1;
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        renderCart();
     }
-    updateCartCount();
-});
+}
 
-document.getElementById('plus2').addEventListener('click', function() {
-    let quantity = document.getElementById('quantity2');
-    quantity.textContent = parseInt(quantity.textContent) + 1;
-    updateCartCount();
-});
+function decreaseQuantity(itemId) {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const itemIndex = cartItems.findIndex(item => item.id === parseInt(itemId));
 
-document.getElementById('minus2').addEventListener('click', function() {
-    let quantity = document.getElementById('quantity2');
-    if (parseInt(quantity.textContent) > 1) {
-        quantity.textContent = parseInt(quantity.textContent) - 1;
+    if (itemIndex > -1) {
+        if (cartItems[itemIndex].quantity > 1) {
+            cartItems[itemIndex].quantity -= 1;
+        } else {
+            cartItems.splice(itemIndex, 1); // Remove the item if quantity is 0
+        }
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        renderCart();
     }
-    updateCartCount();
+}
+
+function removeItem(itemId) {
+    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    cartItems = cartItems.filter(item => item.id !== parseInt(itemId));
+
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    renderCart();
+}
+
+function clearCart() {
+    localStorage.removeItem('cartItems');
+    localStorage.setItem('cartCount', 0);
+    renderCart();
+}
+
+document.getElementById('cart-container').addEventListener('click', (event) => {
+    const itemId = event.target.dataset.id;
+
+    if (event.target.classList.contains('increase-quantity')) {
+        increaseQuantity(itemId);
+    } else if (event.target.classList.contains('decrease-quantity')) {
+        decreaseQuantity(itemId);
+    } else if (event.target.classList.contains('remove-item')) {
+        removeItem(itemId);
+    }
 });
 
-// Functionality for remove button
-let removeButtons = document.querySelectorAll('.remove-btn');
-removeButtons.forEach(function(button) {
-    button.addEventListener('click', function() {
-        button.closest('.cart-item').remove();
-    });
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM fully loaded');
+    renderCart();
+
+    // Add event listener for the "Clear Cart" button
+    const clearCartButton = document.getElementById('clear-cart-btn');
+    if (clearCartButton) {
+        clearCartButton.addEventListener('click', () => {
+            clearCart();
+        });
+    }
 });
 
-updateCartCount();
 
 // --- Navbar Username Update ---
 // Retrieve the username from localStorage

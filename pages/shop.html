@@ -1,3 +1,30 @@
+
+<!-- META DATA -->
+<!--
+Developer Details:
+    Name: Prachi Tavse
+    Role: Frontend Developer
+
+Version:
+    Version: V 1.0 (2 December 2024)
+    Developers: Prachi Tavse
+    Unit Test: Pass
+    Integration Test: Pass
+
+Description:
+    This is the shop page for the Peoplely Fashion e-commerce platform.
+    Users can browse products according to different categories, view product details and add them to cart to buy
+
+Dependencies:
+    - Environment:
+        - HTML5
+        - CSS3
+        - JavaScript (ES6+)
+
+To Run:
+    Open the `cart.html` file in a modern web browser.
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,25 +74,35 @@
     <a href="recommended.html">Recommended</a>
     <a href="order_history.html">Order History</a>
     <a href="shop.html">Shop</a>
-    <a href="cart.html">Cart</a>
+    <!-- Cart link displaying item count dynamically -->
+    <a href="cart.html" id="cart-link">Cart (0)</a>
     <a href="homepage.html">Logout</a>
   </div>
   
+  <div class="category-navbar">
+    <button data-category="footwear" class="active">Footwear</button>
+    <button data-category="fragrance">Fragrance</button>
+    <button data-category="apparels">Apparels</button>
+    <button data-category="bags">Bags</button>
+  </div>
 
-       <!-- Category Navbar -->
-        <div class="category-navbar">
-            <button class="active" onclick="loadImages('footwear')">Footwear</button>
-            <button onclick="loadImages('fragrance')">Fragrance</button>
-            <button onclick="loadImages('apparels')">Apparels</button>
-            <button onclick="loadImages('bags')">Bags</button>
-        </div>
-
-    <div class="image-wrapper">
-        <div class="image-gallery" id="image-gallery">
-        <!-- Images will be dynamically inserted -->
-        </div>
+  <!-- Wrapper for the image gallery -->
+  <div class="image-wrapper">
+    <!-- Image gallery where images will be dynamically loaded -->
+    <div class="image-gallery" id="image-gallery">
+      <!-- Images will be inserted dynamically via JavaScript -->
     </div>
+  </div>
 
+  <!-- Add the Product Details Modal -->
+  <div id="product-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <div id="product-details">
+        <!-- Product details dynamically inserted here -->
+      </div>
+    </div>
+  </div>
 
   <!-- Footer Section with Links -->
   <footer>

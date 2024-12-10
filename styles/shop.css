@@ -1,3 +1,24 @@
+/* META DATA - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+/* Developer details:
+    Name: Prachi Tavse
+    Role: Architect */
+
+/* Version:
+    Version: V 1.0 (2 December 2024)
+    Developers: Prachi Tavse
+    Unit test: Pass
+    Integration test: Pass */
+
+/* Description:
+    This CSS file defines the styling for the shop page, including layout and visual design elements such as color schemes, and fonts. */
+
+/* Dependencies:
+    - No external CSS libraries like Bootstrap are used.
+    - Custom styling tailored to the e-commerce platform's branding and UI design requirements. */    
+
+/* To use: Link this CSS file within the HTML file to apply the styles for the personal details section. */
+
 /* General Styles */
 body {
     font-family: Arial, sans-serif; /* Set the font family for the entire page */
@@ -17,7 +38,7 @@ body {
   
   /* Brand Logo and Name (Top Left) */
   .brand-logo {
-    position: absolute; /* Position the logo in the top-left corner */
+    position: fixed; /* Position the logo in the top-left corner */
     top: 20px;
     left: 20px;
     text-align: left; /* Align text to the left */
@@ -138,73 +159,161 @@ body {
   }
 
     /* Add styling for category navbar */
-.category-navbar {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin: 20px 0;
-}
+  .category-navbar {
+    /* Center the buttons horizontally */
+    display: flex;
+    justify-content: center;
+    /* Space between buttons */
+    gap: 15px;
+    /* Add margin above and below the navbar */
+    margin: 20px 0;
+  }
 
-.category-navbar button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: lightgray;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.05s, color 0.05s;
-}
+  /* Style for category buttons */
+  .category-navbar button {
+    /* Padding for button content */
+    padding: 10px 20px;
+    /* Font size of the button text */
+    font-size: 16px;
+    /* Light gray background for default state */
+    background-color: lightgray;
+    /* Light border around the buttons */
+    border: 1px solid #ccc;
+    /* Rounded corners for the buttons */
+    border-radius: 5px;
+    /* Pointer cursor on hover */
+    cursor: pointer;
+    /* Smooth transition for hover effects */
+    transition: background-color 0.05s, color 0.05s;
+  }
 
-.category-navbar button:hover {
-  background-color: black;
-  color: white;
-}
+  /* Change background and text color when the button is hovered */
+  .category-navbar button:hover {
+    background-color: black;
+    color: white;
+  }
 
-.category-navbar button.active {
-  background-color: black;
-  color: white;
-}
+  /* Style for the active button */
+  .category-navbar button.active {
+    /* Black background for the active state */
+    background-color: black;
+    /* White text color for the active state */
+    color: white;
+  }
 
-.image-wrapper{
-  padding: 20px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+  /* Style for the image wrapper */
+  .image-wrapper {
+    /* Padding around the wrapper */
+    padding: 20px;
+    /* Allow the wrapper to expand and fill the space */
+    flex: 1;
+    /* Center content horizontally and vertically */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
-.image-gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns layout */
-  gap: 20px; /* Space between images */
-  justify-items: center;
-  /* margin-top: 90px; */
-}
+  /* Style for the image gallery */
+  .image-gallery {
+    /* Use a grid layout for the gallery */
+    display: grid;
+    /* Define three equal-width columns */
+    grid-template-columns: repeat(3, 1fr);
+    /* Add space between images */
+    gap: 20px;
+    /* Center-align grid items */
+    justify-items: center;
+    flex-grow: 1;
+    padding: 0 20px 70px 40px;
+  }
 
-.image-container {
-  width: 150px;
-  height: 150px;
-  overflow: hidden;
-  border-radius: 10px;
-  background-color: #fff;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
+  /* Style for individual image containers */
+  .image-container {
+    /* Set fixed dimensions for the container */
+    width: 150px;
+    height: 150px;
+    /* Hide any overflowing content (e.g., from images) */
+    overflow: hidden;
+    /* Rounded corners for the container */
+    border-radius: 10px;
+    /* White background for the container */
+    background-color: #fff;
+    /* Add a subtle shadow for a 3D effect */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
 
-.image-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+  /* Style for the images within the container */
+  .image-container img {
+    /* Make the image fill the container */
+    width: 100%;
+    height: 100%;
+    /* Ensure the image aspect ratio is maintained */
+    object-fit: cover;
+  }
+
+  /* Modal Overlay */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent background */
+  }
+
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+
+  /* Close Button */
+  .close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .close-btn:hover {
+    color: #000;
+  }
+
+  /* Add to Cart Button */
+  .add-to-cart-btn {
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .add-to-cart-btn:hover {
+    background-color: darkgray;
+  }
+
 
   footer {
     position: fixed; /* Fix it at the bottom of the page */
     bottom: 0; /* Align footer at the bottom */
     width: 100%; /* Full width */
-    padding: 20px 0; /* Add padding */
+    padding: 0 20px 20px 20px; /* Add padding */
     text-align: center; /* Center the footer text */
     color: gray; /* Gray text color */
-    background: none; /* No background */
+    background: white; /* No background */
     margin-top: 50px;
   }
   
